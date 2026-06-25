@@ -1,0 +1,139 @@
+configure_slot:
+  name: Configure AMS slot
+  description: >-
+    Push a filament profile to an AMS slot (the SpoolTap-style assignment —
+    tell the printer what's loaded). Mostly for automation; the values are
+    Bambu profile codes.
+  fields:
+    device_id:
+      name: Printer
+      required: true
+      selector:
+        device:
+          integration: thegrove
+    ams_id:
+      name: AMS id
+      description: 0 = left, 1 = right (255 = external)
+      required: true
+      selector: { number: { min: 0, max: 255, mode: box } }
+    tray_id:
+      name: Tray (per-AMS 0-3)
+      required: true
+      selector: { number: { min: 0, max: 3, mode: box } }
+    tray_info_idx:
+      name: Filament id (tray_info_idx)
+      required: true
+      example: GFL05
+      selector: { text: {} }
+    tray_type:
+      name: Material type
+      required: true
+      example: PLA
+      selector: { text: {} }
+    tray_sub_brands:
+      name: Sub-brand / profile
+      required: true
+      example: PLA Basic
+      selector: { text: {} }
+    tray_color:
+      name: Color (RRGGBBAA hex)
+      required: true
+      example: FFFF00FF
+      selector: { text: {} }
+    nozzle_temp_min:
+      name: Nozzle temp min
+      required: true
+      selector: { number: { min: 0, max: 350, mode: box, unit_of_measurement: "°C" } }
+    nozzle_temp_max:
+      name: Nozzle temp max
+      required: true
+      selector: { number: { min: 0, max: 350, mode: box, unit_of_measurement: "°C" } }
+    cali_idx:
+      name: K-profile index
+      description: -1 = default
+      selector: { number: { min: -1, max: 9999, mode: box } }
+    nozzle_diameter:
+      name: Nozzle diameter
+      selector: { select: { options: ["0.2", "0.4", "0.6", "0.8"] } }
+    setting_id:
+      name: Setting id
+      selector: { text: {} }
+    k_value:
+      name: K value (pressure advance)
+      description: 0 = skip direct-set
+      selector: { number: { min: 0, max: 1, step: 0.001, mode: box } }
+
+skip_objects:
+  name: Skip objects
+  description: >-
+    Skip the listed object ids during the active print. Find the ids on the
+    printer's "Printable objects" sensor (it lists each object's id + name).
+  fields:
+    device_id:
+      name: Printer
+      required: true
+      selector:
+        device:
+          integration: thegrove
+    object_ids:
+      name: Object ids
+      description: A list of integer object ids, e.g. [12, 34]
+      required: true
+      selector: { object: {} }
+
+start_calibration:
+  name: Start calibration
+  description: Run the selected calibration routines (at least one).
+  fields:
+    device_id:
+      name: Printer
+      required: true
+      selector:
+        device:
+          integration: thegrove
+    bed_leveling:
+      name: Bed leveling
+      selector: { boolean: {} }
+    vibration:
+      name: Vibration compensation
+      selector: { boolean: {} }
+    motor_noise:
+      name: Motor-noise calibration
+      selector: { boolean: {} }
+    nozzle_offset:
+      name: Nozzle offset (dual-nozzle)
+      selector: { boolean: {} }
+    high_temp_heatbed:
+      name: High-temp heatbed
+      selector: { boolean: {} }
+
+start_drying:
+  name: Start drying (custom)
+  description: >-
+    Start an AMS dry cycle with custom temperature/duration (the Dryer switch
+    uses the 45 °C / 8 h defaults).
+  fields:
+    device_id:
+      name: Printer
+      required: true
+      selector:
+        device:
+          integration: thegrove
+    ams_id:
+      name: AMS id
+      description: 0 = left, 1 = right
+      required: true
+      selector: { number: { min: 0, max: 3, mode: box } }
+    temp:
+      name: Temperature
+      selector: { number: { min: 45, max: 85, mode: slider, unit_of_measurement: "°C" } }
+    duration:
+      name: Duration
+      selector: { number: { min: 1, max: 24, mode: slider, unit_of_measurement: "h" } }
+    filament:
+      name: Filament (optional)
+      description: Empty = backfill from the loaded tray
+      selector: { text: {} }
+    rotate_tray:
+      name: Rotate tray
+      selector: { boolean: {} }

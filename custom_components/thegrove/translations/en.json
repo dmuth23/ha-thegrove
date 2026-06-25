@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Bambuddy",
+        "description": "Enter the Bambuddy host URL. An API token is only needed if Bambuddy authentication is enabled (it is off on the LAN).",
+        "data": {
+          "host": "Bambuddy host (URL)",
+          "api_token": "API token (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach Bambuddy at that host.",
+      "no_printers": "Connected, but Bambuddy reports no printers."
+    },
+    "abort": {
+      "already_configured": "This Bambuddy host is already configured."
+    }
+  }
+}
