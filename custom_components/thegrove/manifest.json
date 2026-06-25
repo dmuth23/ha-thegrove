@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "config_flow": true,
   "documentation": "https://github.com/dmuth23/ha-thegrove",
+  "issue_tracker": "https://github.com/dmuth23/ha-thegrove/issues",
   "iot_class": "local_push",
   "integration_type": "hub",
   "codeowners": ["@dmuth23"],
