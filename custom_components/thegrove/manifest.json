@@ -1,13 +1,13 @@
 {
   "domain": "thegrove",
   "name": "The Grove (Bambuddy)",
-  "version": "0.0.1",
-  "config_flow": true,
-  "documentation": "https://github.com/dmuth23/ha-thegrove",
-  "issue_tracker": "https://github.com/dmuth23/ha-thegrove/issues",
-  "iot_class": "local_push",
-  "integration_type": "hub",
   "codeowners": ["@dmuth23"],
+  "config_flow": true,
   "dependencies": [],
-  "requirements": []
+  "documentation": "https://github.com/dmuth23/ha-thegrove",
+  "integration_type": "hub",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/dmuth23/ha-thegrove/issues",
+  "requirements": [],
+  "version": "0.0.1"
 }
