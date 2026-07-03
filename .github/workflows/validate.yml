@@ -1,0 +1,30 @@
+name: Validate
+
+# Ships INTO the ha-thegrove mirror (copied by the source repo's CI) so the
+# public repo continuously proves the two gates a HACS default-store submission
+# links to: hassfest and hacs/action (category integration, no ignores).
+# Runs on push + PR + nightly, so a future HA/HACS rule change surfaces early.
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch: {}
+
+permissions: {}
+
+jobs:
+  hassfest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: HACS validation
+        uses: hacs/action@main
+        with:
+          category: integration
