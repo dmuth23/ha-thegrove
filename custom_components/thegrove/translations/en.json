@@ -8,6 +8,14 @@
           "host": "Bambuddy host (URL)",
           "api_token": "API token (optional)"
         }
+      },
+      "reconfigure": {
+        "title": "Change Bambuddy host",
+        "description": "Point this entry at a different Bambuddy host URL (for example after moving Bambuddy). Entities are keyed on printer serial and are kept.",
+        "data": {
+          "host": "Bambuddy host (URL)",
+          "api_token": "API token (optional)"
+        }
       }
     },
     "error": {
@@ -15,7 +23,8 @@
       "no_printers": "Connected, but Bambuddy reports no printers."
     },
     "abort": {
-      "already_configured": "This Bambuddy host is already configured."
+      "already_configured": "This Bambuddy host is already configured.",
+      "reconfigure_successful": "Bambuddy host updated."
     }
   }
 }
