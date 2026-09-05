@@ -46,7 +46,7 @@ decoder.
 
 - A running **[Bambuddy](https://github.com/maziggy/bambuddy)** instance reachable from your
   Home Assistant host. The `bambuddy-daily` Home Assistant add-on is the common case, but any
-  reachable Bambuddy host works.
+  reachable Bambuddy host works. Tested against Bambuddy 0.2.5b1 through 1.2.6b1.
 - Home Assistant **2025.1.0+**.
 - A single-extruder Bambu Lab printer (P-, X-, or A-series) with standard AMS, already added
   to Bambuddy. Dual-extruder (H2D) is **not yet supported**.
@@ -67,11 +67,18 @@ Download **The Grove (Bambuddy)**, then **restart Home Assistant**.
 
 | Field | Notes |
 |---|---|
-| **Bambuddy host (URL)** | Base URL of your Bambuddy instance. Defaults to the `bambuddy-daily` add-on's internal host (`http://33558673-bambuddy-daily:8000`), so add-on users can usually just accept the default. |
+| **Bambuddy host (URL)** | Base URL of your Bambuddy instance. Defaults to the `bambuddy-daily` add-on's internal host (`http://33558673-bambuddy-daily:8000`), so add-on users can usually just accept the default. Any reachable Bambuddy URL works, e.g. a Docker host on your LAN. |
 | **API token (optional)** | Only needed if your Bambuddy has authentication enabled. |
 
 The Grove verifies the connection and that Bambuddy reports at least one printer, then
 creates a device for each printer (and each Virtual Printer). Done.
+
+### Moving Bambuddy to another host
+
+Moved Bambuddy — new IP, a different Docker host, off the add-on entirely? Use
+**Settings → Devices & Services → The Grove → Reconfigure** to update the host URL or
+API token in place. Entities are keyed on printer serial, so your entities, their areas
+and any renames are kept. Available from v0.1.1.
 
 ## How it works
 
@@ -81,6 +88,13 @@ already-decoded fields straight onto Home Assistant entities — a slower REST p
 the WebSocket as a backstop. All writes (controls and services) go through Bambuddy's REST
 API, which handles the actual printer communication. Zero Bambuddy code modifications — stock
 API only, and no direct MQTT connection to the printers.
+
+## Changelog
+
+- **v0.1.1 (2026-09-04)** — Reconfigure flow, so the config entry can follow Bambuddy to a
+  new host without deleting and re-adding it. Verified against Bambuddy 1.2.6b1 (all
+  endpoints used are unchanged since 0.2.5b1).
+- **v0.1.0 (2026-07-03)** — First HACS-ready release.
 
 ## License
 
